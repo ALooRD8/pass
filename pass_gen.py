@@ -68,7 +68,11 @@ def gen():
         id = db.execute("INSERT INTO password (pass, web_name) VALUES(?, ?)", password, input_q)
     except:
         print(f"{R}There was an error please try again{W}")
-    clipboard.copy(password)
+
+    try:
+        clipboard.copy(password)
+    except:
+        pass
     return id
 
 def main():
@@ -223,7 +227,10 @@ def pr(row, mode=1) -> None:
         for i in range(len(row)):
             print(row[i]["pass"], (" " * (20 - len(row[i]["pass"]))), "| ", row[i]["web_name"])
         if len(row) == 1:
-            clipboard.copy(row[0]["pass"])
+            try:
+                clipboard.copy(row[0]["pass"])
+            except:
+                pass
     elif mode == 3:
         for i in range(len(row)):
             if row[i]["id"] < 10:
